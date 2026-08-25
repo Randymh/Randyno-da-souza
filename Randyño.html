@@ -1,0 +1,3118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#111111">
+<title>Randiño — Aprende Portugués</title>
+
+<style>
+/* =========================================================
+   RANDIÑO — DISEÑO SOBRIO EN BLANCO Y NEGRO
+   ========================================================= */
+
+:root{
+  --black:#111111;
+  --dark:#222222;
+  --gray:#666666;
+  --muted:#888888;
+  --line:#e5e5e5;
+  --soft:#f5f5f5;
+  --white:#ffffff;
+  --success:#222222;
+  --danger:#777777;
+  --radius:14px;
+  --shadow:0 4px 18px rgba(0,0,0,.06);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+
+html{
+  scroll-behavior:smooth;
+  scroll-padding-top:75px;
+}
+
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  background:#fafafa;
+  color:var(--black);
+  line-height:1.6;
+}
+
+button,input,select{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+/* TOP NAV */
+
+.topbar{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  height:68px;
+  background:rgba(255,255,255,.97);
+  border-bottom:1px solid var(--line);
+  z-index:1000;
+  display:flex;
+  align-items:center;
+}
+
+.nav-inner{
+  width:min(1400px,100%);
+  margin:auto;
+  padding:0 22px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-weight:800;
+  font-size:20px;
+  letter-spacing:-.5px;
+  white-space:nowrap;
+}
+
+.brand-mark{
+  width:36px;
+  height:36px;
+  border-radius:10px;
+  background:var(--black);
+  color:white;
+  display:grid;
+  place-items:center;
+  font-size:18px;
+}
+
+.desktop-nav{
+  display:flex;
+  align-items:center;
+  gap:4px;
+}
+
+.nav-btn{
+  border:0;
+  background:transparent;
+  padding:9px 11px;
+  border-radius:8px;
+  color:#555;
+  font-size:13px;
+  transition:.2s;
+}
+
+.nav-btn:hover,
+.nav-btn.active{
+  background:#111;
+  color:#fff;
+}
+
+.mobile-menu{
+  display:none;
+  border:1px solid var(--line);
+  background:#fff;
+  width:42px;
+  height:42px;
+  border-radius:9px;
+  font-size:20px;
+}
+
+/* LAYOUT */
+
+.app{
+  display:flex;
+  max-width:1400px;
+  margin:auto;
+  padding-top:68px;
+}
+
+.sidebar{
+  width:235px;
+  position:fixed;
+  top:68px;
+  bottom:0;
+  padding:28px 16px;
+  border-right:1px solid var(--line);
+  background:#fff;
+  overflow-y:auto;
+}
+
+.side-title{
+  font-size:10px;
+  font-weight:800;
+  color:#999;
+  letter-spacing:1.4px;
+  margin:18px 10px 8px;
+}
+
+.side-title:first-child{margin-top:0}
+
+.side-btn{
+  width:100%;
+  text-align:left;
+  border:0;
+  background:transparent;
+  padding:10px 12px;
+  border-radius:9px;
+  color:#555;
+  margin:2px 0;
+  font-size:14px;
+  transition:.2s;
+}
+
+.side-btn:hover,
+.side-btn.active{
+  background:#111;
+  color:white;
+}
+
+.content{
+  margin-left:235px;
+  width:calc(100% - 235px);
+  padding:38px clamp(20px,4vw,55px) 80px;
+  min-width:0;
+}
+
+.section{
+  display:none;
+  animation:fade .25s ease;
+}
+
+.section.active{
+  display:block;
+}
+
+@keyframes fade{
+  from{opacity:0;transform:translateY(5px)}
+  to{opacity:1;transform:none}
+}
+
+/* HEADINGS */
+
+.eyebrow{
+  text-transform:uppercase;
+  letter-spacing:2px;
+  font-size:11px;
+  font-weight:800;
+  color:#888;
+  margin-bottom:8px;
+}
+
+h1{
+  font-size:clamp(30px,5vw,50px);
+  line-height:1.05;
+  letter-spacing:-2px;
+  margin-bottom:12px;
+}
+
+h2{
+  font-size:clamp(23px,3vw,32px);
+  letter-spacing:-1px;
+  margin-bottom:8px;
+}
+
+h3{
+  font-size:19px;
+  margin-bottom:6px;
+}
+
+.lead{
+  color:#666;
+  max-width:700px;
+  margin-bottom:25px;
+}
+
+.divider{
+  height:1px;
+  background:var(--line);
+  margin:28px 0;
+}
+
+/* CARDS */
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:16px;
+}
+
+.grid-2{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:18px;
+}
+
+.card{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:22px;
+  box-shadow:var(--shadow);
+}
+
+.card.clickable{
+  cursor:pointer;
+  transition:.2s;
+}
+
+.card.clickable:hover{
+  transform:translateY(-2px);
+  border-color:#aaa;
+  box-shadow:0 9px 25px rgba(0,0,0,.08);
+}
+
+.card-icon{
+  font-size:25px;
+  margin-bottom:12px;
+  filter:grayscale(1);
+}
+
+.card p{
+  color:#666;
+  font-size:14px;
+}
+
+/* HERO */
+
+.hero{
+  background:#111;
+  color:#fff;
+  border-radius:20px;
+  padding:clamp(25px,5vw,50px);
+  margin-bottom:20px;
+  position:relative;
+  overflow:hidden;
+}
+
+.hero:after{
+  content:"";
+  position:absolute;
+  width:220px;
+  height:220px;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:50%;
+  right:-80px;
+  bottom:-100px;
+}
+
+.hero .eyebrow{color:#aaa}
+.hero .lead{color:#bbb}
+
+.hero-actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+/* BUTTONS */
+
+.btn{
+  border:1px solid #111;
+  background:#111;
+  color:#fff;
+  border-radius:9px;
+  padding:11px 16px;
+  font-weight:700;
+  font-size:13px;
+  transition:.2s;
+}
+
+.btn:hover{
+  background:#333;
+}
+
+.btn.secondary{
+  background:#fff;
+  color:#111;
+}
+
+.btn.secondary:hover{
+  background:#f2f2f2;
+}
+
+.btn.light{
+  background:#f4f4f4;
+  border-color:#ddd;
+  color:#111;
+}
+
+.btn.small{
+  padding:8px 11px;
+  font-size:12px;
+}
+
+/* WORD OF DAY */
+
+.word-day{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:25px;
+  align-items:center;
+}
+
+.word{
+  font-size:38px;
+  font-weight:800;
+  letter-spacing:-1px;
+}
+
+.pron{
+  color:#777;
+  font-size:14px;
+}
+
+.example{
+  margin-top:15px;
+  border-left:3px solid #111;
+  padding-left:14px;
+}
+
+.example strong{
+  display:block;
+  margin-bottom:3px;
+}
+
+/* SEARCH */
+
+.search-box{
+  position:relative;
+  margin:20px 0;
+}
+
+.search-box input{
+  width:100%;
+  padding:15px 18px;
+  border:1px solid #ddd;
+  border-radius:10px;
+  outline:none;
+  background:white;
+}
+
+.search-box input:focus{
+  border-color:#111;
+  box-shadow:0 0 0 3px #eee;
+}
+
+/* FILTER */
+
+.filters{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin:15px 0 22px;
+}
+
+.filter{
+  padding:8px 12px;
+  background:white;
+  border:1px solid #ddd;
+  border-radius:20px;
+  font-size:12px;
+  cursor:pointer;
+}
+
+.filter.active{
+  background:#111;
+  color:white;
+  border-color:#111;
+}
+
+/* VOCABULARY */
+
+.vocab-card{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:17px;
+  position:relative;
+}
+
+.vocab-category{
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  color:#999;
+  margin-bottom:6px;
+}
+
+.vocab-word{
+  font-size:20px;
+  font-weight:800;
+}
+
+.vocab-meaning{
+  color:#555;
+}
+
+.vocab-example{
+  margin-top:10px;
+  padding-top:10px;
+  border-top:1px solid #eee;
+  font-size:13px;
+}
+
+.speak{
+  border:1px solid #ddd;
+  background:#fff;
+  border-radius:8px;
+  padding:7px 10px;
+  margin-top:10px;
+  font-size:12px;
+}
+
+.speak:hover{
+  background:#111;
+  color:#fff;
+}
+
+/* LESSON */
+
+.lesson{
+  max-width:900px;
+}
+
+.lesson-block{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:23px;
+  margin:15px 0;
+}
+
+.lesson-block p{
+  margin:8px 0;
+}
+
+.pt{
+  font-weight:700;
+  font-size:17px;
+}
+
+.es{
+  color:#666;
+}
+
+.note{
+  background:#f5f5f5;
+  border-left:3px solid #111;
+  padding:14px;
+  margin:15px 0;
+  font-size:14px;
+}
+
+.warning{
+  border-left-color:#777;
+}
+
+/* TABLE */
+
+.table-wrap{
+  overflow-x:auto;
+  border:1px solid var(--line);
+  border-radius:12px;
+  background:#fff;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:500px;
+}
+
+th,td{
+  padding:12px 14px;
+  text-align:left;
+  border-bottom:1px solid #eee;
+  font-size:14px;
+}
+
+th{
+  background:#f5f5f5;
+  font-size:12px;
+  text-transform:uppercase;
+  letter-spacing:.5px;
+}
+
+tr:last-child td{border-bottom:0}
+
+/* PRONUNCIATION */
+
+.sound-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+}
+
+.sound-card{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:18px;
+}
+
+.sound-letter{
+  font-size:27px;
+  font-weight:900;
+}
+
+/* EXERCISES */
+
+.exercise{
+  max-width:750px;
+  margin:auto;
+}
+
+.question{
+  font-size:25px;
+  font-weight:800;
+  margin:15px 0 20px;
+}
+
+.options{
+  display:grid;
+  gap:10px;
+}
+
+.option{
+  width:100%;
+  text-align:left;
+  padding:15px;
+  border:1px solid #ddd;
+  background:#fff;
+  border-radius:10px;
+  transition:.15s;
+}
+
+.option:hover{
+  border-color:#111;
+}
+
+.option.correct{
+  background:#111;
+  color:#fff;
+  border-color:#111;
+}
+
+.option.wrong{
+  background:#eee;
+  border-color:#888;
+}
+
+.feedback{
+  margin-top:18px;
+  padding:15px;
+  border-radius:10px;
+  background:#f3f3f3;
+  display:none;
+}
+
+.feedback.show{display:block}
+
+/* PROGRESS */
+
+.stat-grid{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:13px;
+}
+
+.stat{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:18px;
+}
+
+.stat-number{
+  font-size:28px;
+  font-weight:900;
+}
+
+.stat-label{
+  font-size:12px;
+  color:#777;
+}
+
+.progress{
+  height:9px;
+  background:#eee;
+  border-radius:20px;
+  overflow:hidden;
+}
+
+.progress-bar{
+  height:100%;
+  width:0;
+  background:#111;
+  transition:width .5s;
+}
+
+/* ACHIEVEMENTS */
+
+.badges{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+}
+
+.badge{
+  border:1px solid #ddd;
+  border-radius:12px;
+  padding:17px;
+  background:#fff;
+  opacity:.4;
+}
+
+.badge.unlocked{
+  opacity:1;
+  border-color:#111;
+}
+
+.badge-icon{
+  font-size:25px;
+  filter:grayscale(1);
+}
+
+/* GLOBAL SEARCH */
+
+.search-result{
+  padding:14px 0;
+  border-bottom:1px solid #eee;
+  cursor:pointer;
+}
+
+.search-result:hover strong{
+  text-decoration:underline;
+}
+
+/* FOOTER */
+
+footer{
+  text-align:center;
+  color:#999;
+  font-size:12px;
+  padding:40px 0 10px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1000px){
+  .desktop-nav{display:none}
+  .mobile-menu{display:block}
+
+  .sidebar{
+    transform:translateX(-100%);
+    transition:.25s;
+    z-index:900;
+    box-shadow:5px 0 20px rgba(0,0,0,.08);
+  }
+
+  .sidebar.open{
+    transform:translateX(0);
+  }
+
+  .content{
+    margin-left:0;
+    width:100%;
+  }
+
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .stat-grid{grid-template-columns:repeat(2,1fr)}
+}
+
+@media(max-width:650px){
+  .content{
+    padding:25px 14px 60px;
+  }
+
+  .nav-inner{
+    padding:0 14px;
+  }
+
+  .grid,
+  .grid-2,
+  .sound-grid,
+  .badges{
+    grid-template-columns:1fr;
+  }
+
+  .word-day{
+    grid-template-columns:1fr;
+  }
+
+  .stat-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  h1{
+    font-size:34px;
+  }
+
+  .hero{
+    border-radius:15px;
+  }
+
+  .card,
+  .lesson-block{
+    padding:18px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- =========================================================
+     NAVEGACIÓN
+     ========================================================= -->
+
+<header class="topbar">
+  <div class="nav-inner">
+
+    <a href="#" class="brand" onclick="showSection('inicio');return false;">
+      <span class="brand-mark">R</span>
+      RANDIÑO
+    </a>
+
+    <nav class="desktop-nav">
+      <button class="nav-btn active" data-section="inicio">Inicio</button>
+      <button class="nav-btn" data-section="vocabulario">Vocabulario</button>
+      <button class="nav-btn" data-section="verbos">Verbos</button>
+      <button class="nav-btn" data-section="gramatica">Gramática</button>
+      <button class="nav-btn" data-section="pronunciacion">Pronunciación</button>
+      <button class="nav-btn" data-section="frases">Frases</button>
+      <button class="nav-btn" data-section="ejercicios">Ejercicios</button>
+      <button class="nav-btn" data-section="repaso">Repaso</button>
+    </nav>
+
+    <button class="mobile-menu" id="menuBtn">☰</button>
+  </div>
+</header>
+
+<div class="app">
+
+<!-- =========================================================
+     SIDEBAR
+     ========================================================= -->
+
+<aside class="sidebar" id="sidebar">
+
+  <div class="side-title">APRENDER</div>
+
+  <button class="side-btn active" data-section="inicio">⌂ Inicio</button>
+  <button class="side-btn" data-section="vocabulario">A–Z Vocabulario</button>
+  <button class="side-btn" data-section="verbos">⚡ Verbos</button>
+  <button class="side-btn" data-section="gramatica">Aa Gramática</button>
+  <button class="side-btn" data-section="pronunciacion">◉ Pronunciación</button>
+  <button class="side-btn" data-section="numeros">123 Números</button>
+  <button class="side-btn" data-section="colores">Colores</button>
+  <button class="side-btn" data-section="comparacion">Español vs Portugués</button>
+
+  <div class="side-title">COMUNICACIÓN</div>
+
+  <button class="side-btn" data-section="frases">Frases útiles</button>
+  <button class="side-btn" data-section="conversacion">Conversación</button>
+
+  <div class="side-title">PRACTICAR</div>
+
+  <button class="side-btn" data-section="ejercicios">Ejercicios</button>
+  <button class="side-btn" data-section="repaso">Repaso</button>
+
+  <div class="side-title">MI RANDIÑO</div>
+
+  <button class="side-btn" data-section="progreso">Mi progreso</button>
+
+</aside>
+
+<!-- =========================================================
+     CONTENIDO
+     ========================================================= -->
+
+<main class="content">
+
+<!-- ===================== INICIO ===================== -->
+
+<section id="inicio" class="section active">
+
+  <div class="hero">
+    <div class="eyebrow">Português brasileiro</div>
+    <h1>Bem-vindo ao Randiño.</h1>
+    <p class="lead">
+      Aprende portugués desde cero hasta un nivel avanzado,
+      paso a paso y con explicaciones pensadas para hispanohablantes.
+    </p>
+
+    <div class="hero-actions">
+      <button class="btn" onclick="showSection('vocabulario')">Comenzar a aprender</button>
+      <button class="btn secondary" onclick="showSection('ejercicios')">Practicar</button>
+    </div>
+  </div>
+
+  <div class="card word-day">
+    <div>
+      <div class="eyebrow">Palabra del día</div>
+      <div class="word">saudade</div>
+      <div class="pron">Pronunciación aproximada: <b>saudádi</b></div>
+      <p style="margin-top:7px;color:#555">
+        Sentimiento de nostalgia, añoranza o echar mucho de menos a alguien o algo.
+      </p>
+
+      <div class="example">
+        <strong>🇧🇷 Sinto saudade da minha família.</strong>
+        <span class="es">🇪🇸 Echo de menos a mi familia.</span>
+      </div>
+    </div>
+
+    <button class="btn" onclick="speak('saudade')">🔊 Escuchar</button>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="eyebrow">Tu camino</div>
+  <h2>Aprende por bloques.</h2>
+  <p class="lead">
+    No necesitas memorizar todo de una vez. Estudia una categoría,
+    practica y vuelve a repasarla.
+  </p>
+
+  <div class="grid">
+
+    <div class="card clickable" onclick="showSection('vocabulario')">
+      <div class="card-icon">A–Z</div>
+      <h3>Vocabulario</h3>
+      <p>Palabras organizadas por situaciones de la vida real.</p>
+    </div>
+
+    <div class="card clickable" onclick="showSection('pronunciacion')">
+      <div class="card-icon">◉</div>
+      <h3>Pronunciación</h3>
+      <p>Aprende los sonidos que más cuestan a los hispanohablantes.</p>
+    </div>
+
+    <div class="card clickable" onclick="showSection('gramatica')">
+      <div class="card-icon">Aa</div>
+      <h3>Gramática</h3>
+      <p>Reglas explicadas en español y con ejemplos reales.</p>
+    </div>
+
+    <div class="card clickable" onclick="showSection('verbos')">
+      <div class="card-icon">⚡</div>
+      <h3>Verbos</h3>
+      <p>Infinitivos, usos y conjugaciones esenciales.</p>
+    </div>
+
+    <div class="card clickable" onclick="showSection('frases')">
+      <div class="card-icon">“ ”</div>
+      <h3>Frases</h3>
+      <p>Expresiones que realmente utilizarás al hablar.</p>
+    </div>
+
+    <div class="card clickable" onclick="showSection('ejercicios')">
+      <div class="card-icon">✓</div>
+      <h3>Ejercicios</h3>
+      <p>Comprueba si realmente estás aprendiendo.</p>
+    </div>
+
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="card">
+    <div class="eyebrow">Progreso</div>
+    <h3>Tu aprendizaje</h3>
+    <div style="display:flex;justify-content:space-between;margin:15px 0 7px;font-size:13px">
+      <span>Progreso general</span>
+      <b id="homeProgress">0%</b>
+    </div>
+    <div class="progress">
+      <div class="progress-bar" id="homeProgressBar"></div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ===================== VOCABULARIO ===================== -->
+
+<section id="vocabulario" class="section">
+
+  <div class="eyebrow">Biblioteca</div>
+  <h1>Vocabulario</h1>
+  <p class="lead">
+    Construye una base sólida de palabras brasileñas.
+    La pronunciación escrita es una aproximación para hispanohablantes,
+    no una transcripción fonética oficial.
+  </p>
+
+  <div class="search-box">
+    <input id="vocabSearch" type="search"
+      placeholder="Buscar palabra, traducción o categoría...">
+  </div>
+
+  <div class="filters" id="filters"></div>
+
+  <div class="grid" id="vocabGrid"></div>
+
+</section>
+
+<!-- ===================== VERBOS ===================== -->
+
+<section id="verbos" class="section">
+
+  <div class="eyebrow">Verbos esenciales</div>
+  <h1>Verbos</h1>
+  <p class="lead">
+    Los verbos son el motor de la conversación. Empieza por los más frecuentes
+    y aprende después sus tiempos verbales.
+  </p>
+
+  <div class="search-box">
+    <input id="verbSearch" type="search" placeholder="Buscar verbo...">
+  </div>
+
+  <div id="verbList"></div>
+
+  <div class="divider"></div>
+
+  <div class="lesson">
+    <div class="eyebrow">Tiempos verbales</div>
+    <h2>Cómo funcionan los tiempos</h2>
+
+    <div class="lesson-block">
+      <h3>Presente</h3>
+      <p>Se utiliza para acciones actuales, habituales y hechos generales.</p>
+      <p class="pt">🇧🇷 Eu estudo português todos os dias.</p>
+      <p class="es">🇪🇸 Estudio portugués todos los días.</p>
+    </div>
+
+    <div class="lesson-block">
+      <h3>Pretérito perfeito</h3>
+      <p>Se utiliza principalmente para acciones terminadas en el pasado.</p>
+      <p class="pt">🇧🇷 Eu estudei ontem.</p>
+      <p class="es">🇪🇸 Estudié ayer.</p>
+    </div>
+
+    <div class="lesson-block">
+      <h3>Pretérito imperfeito</h3>
+      <p>
+        Describe acciones habituales, continuas o situaciones en desarrollo
+        en el pasado.
+      </p>
+      <p class="pt">🇧🇷 Eu estudava todos os dias.</p>
+      <p class="es">🇪🇸 Estudiaba todos los días.</p>
+    </div>
+
+    <div class="lesson-block">
+      <h3>Futuro</h3>
+      <p>
+        El futuro simple existe, aunque en la conversación brasileña
+        es muy frecuente utilizar <b>ir + infinitivo</b>.
+      </p>
+      <p class="pt">🇧🇷 Eu vou estudar amanhã.</p>
+      <p class="es">🇪🇸 Voy a estudiar mañana.</p>
+    </div>
+
+    <div class="lesson-block">
+      <h3>Gerúndio</h3>
+      <p>
+        Se forma normalmente con terminaciones <b>-ando, -endo, -indo</b>.
+        Se utiliza para acciones en desarrollo.
+      </p>
+      <p class="pt">🇧🇷 Estou estudando.</p>
+      <p class="es">🇪🇸 Estoy estudiando.</p>
+    </div>
+
+    <div class="lesson-block">
+      <h3>Condicional / futuro do pretérito</h3>
+      <p>Se utiliza para hipótesis, deseos o situaciones condicionadas.</p>
+      <p class="pt">🇧🇷 Eu viajaria se tivesse dinheiro.</p>
+      <p class="es">🇪🇸 Viajaría si tuviera dinero.</p>
+    </div>
+
+    <div class="lesson-block">
+      <h3>Imperativo</h3>
+      <p>Se utiliza para órdenes, instrucciones, invitaciones o consejos.</p>
+      <p class="pt">🇧🇷 Fale mais devagar, por favor.</p>
+      <p class="es">🇪🇸 Hable más despacio, por favor.</p>
+    </div>
+  </div>
+
+</section>
+
+<!-- ===================== GRAMÁTICA ===================== -->
+
+<section id="gramatica" class="section">
+
+  <div class="eyebrow">Fundamentos</div>
+  <h1>Gramática</h1>
+  <p class="lead">
+    La gramática no consiste en memorizar reglas sin contexto.
+    Aprende qué significa cada estructura y después observa cómo funciona.
+  </p>
+
+  <div class="grid-2">
+
+    <div class="lesson-block">
+      <h3>Artículos</h3>
+      <p>Portugués utiliza artículos definidos e indefinidos.</p>
+      <p class="pt">o, a, os, as</p>
+      <p class="pt">um, uma, uns, umas</p>
+      <p class="es">el, la, los, las / un, una, unos, unas</p>
+    </div>
+
+    <div class="lesson-block">
+      <h3>Género</h3>
+      <p>
+        Los sustantivos tienen género. Muchas palabras se parecen al español,
+        pero no siempre tienen el mismo género.
+      </p>
+      <p class="pt">🇧🇷 o problema</p>
+      <p class="es">🇪🇸 el problema</p>
+      <p class="pt">🇧🇷 a viagem</p>
+      <p class="es">🇪🇸 el viaje</p>
+    </div>
+
+    <div class="lesson-block">
+      <h3>Plural</h3>
+      <p>El plural suele formarse con <b>-s</b>, aunque existen otras reglas.</p>
+      <p class="pt">casa → casas</p>
+      <p class="pt">animal → animais</p>
+      <p class="pt">papel → papéis</p>
+    </div>
+
+    <div class="lesson-block">
+      <h3>Adjetivos</h3>
+      <p>
+        Los adjetivos describen sustantivos y normalmente concuerdan
+        en género y número.
+      </p>
+      <p class="pt">🇧🇷 uma casa bonita</p>
+      <p class="es">🇪🇸 una casa bonita</p>
+    </div>
+
+    <div class="lesson-block">
+      <h3>Adverbios</h3>
+      <p>
+        Modifican verbos, adjetivos u otros adverbios y expresan circunstancias
+        como tiempo, lugar o manera.
+      </p>
+      <p class="pt">🇧🇷 Ele fala devagar.</p>
+      <p class="es">🇪🇸 Él habla despacio.</p>
+    </div>
+
+    <div class="lesson-block">
+      <h3>Pronombres personales</h3>
+      <p class="pt">eu — yo</p>
+      <p class="pt">você — usted / tú según contexto</p>
+      <p class="pt">ele / ela — él / ella</p>
+      <p class="pt">nós — nosotros</p>
+      <p class="pt">vocês — ustedes</p>
+      <p class="pt">eles / elas — ellos / ellas</p>
+    </div>
+
+    <div class="lesson-block">
+      <h3>Preposiciones</h3>
+      <p class="pt">de — de</p>
+      <p class="pt">em — en / dentro de</p>
+      <p class="pt">para — para</p>
+      <p class="pt">com — con</p>
+      <p class="pt">por — por</p>
+    </div>
+
+    <div class="lesson-block">
+      <h3>Conjunciones</h3>
+      <p class="pt">e — y</p>
+      <p class="pt">mas — pero</p>
+      <p class="pt">ou — o</p>
+      <p class="pt">porque — porque</p>
+      <p class="pt">se — si</p>
+    </div>
+
+    <div class="lesson-block">
+      <h3>Negación</h3>
+      <p>La forma básica utiliza <b>não</b> antes del verbo.</p>
+      <p class="pt">🇧🇷 Eu não entendo.</p>
+      <p class="es">🇪🇸 No entiendo.</p>
+    </div>
+
+    <div class="lesson-block">
+      <h3>Preguntas</h3>
+      <p>
+        En portugués brasileño muchas preguntas se forman con la misma
+        estructura de una afirmación, utilizando la entonación.
+      </p>
+      <p class="pt">🇧🇷 Você trabalha aqui?</p>
+      <p class="es">🇪🇸 ¿Trabajas aquí?</p>
+    </div>
+
+    <div class="lesson-block">
+      <h3>Comparativos</h3>
+      <p class="pt">mais alto que — más alto que</p>
+      <p class="pt">menos caro que — menos caro que</p>
+      <p class="pt">tão rápido quanto — tan rápido como</p>
+    </div>
+
+    <div class="lesson-block">
+      <h3>Superlativos</h3>
+      <p class="pt">muito bom — muy bueno</p>
+      <p class="pt">o melhor — el mejor</p>
+      <p class="pt">a pior — la peor</p>
+    </div>
+
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="lesson">
+    <div class="eyebrow">Estructuras fundamentales</div>
+
+    <div class="lesson-block">
+      <h3>Contracciones</h3>
+      <p>
+        Una de las diferencias que más confunde a los hispanohablantes
+        son las contracciones.
+      </p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Forma</th>
+              <th>Resultado</th>
+              <th>Ejemplo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>de + o</td>
+              <td>do</td>
+              <td>o livro do João</td>
+            </tr>
+            <tr>
+              <td>de + a</td>
+              <td>da</td>
+              <td>a casa da Maria</td>
+            </tr>
+            <tr>
+              <td>em + o</td>
+              <td>no</td>
+              <td>no Brasil</td>
+            </tr>
+            <tr>
+              <td>em + a</td>
+              <td>na</td>
+              <td>na escola</td>
+            </tr>
+            <tr>
+              <td>por + o</td>
+              <td>pelo</td>
+              <td>pelo caminho</td>
+            </tr>
+            <tr>
+              <td>por + a</td>
+              <td>pela</td>
+              <td>pela cidade</td>
+            </tr>
+            <tr>
+              <td>a + a</td>
+              <td>à</td>
+              <td>à escola</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="lesson-block">
+      <h3>Posesivos</h3>
+      <p class="pt">meu / minha — mi</p>
+      <p class="pt">seu / sua — su</p>
+      <p class="pt">nosso / nossa — nuestro / nuestra</p>
+      <p class="pt">deles / delas — de ellos / de ellas</p>
+
+      <p class="pt">🇧🇷 Esta é minha casa.</p>
+      <p class="es">🇪🇸 Esta es mi casa.</p>
+    </div>
+
+    <div class="lesson-block">
+      <h3>Demostrativos</h3>
+      <p class="pt">este / esta — este / esta</p>
+      <p class="pt">esse / essa — ese / esa</p>
+      <p class="pt">aquele / aquela — aquel / aquella</p>
+    </div>
+
+    <div class="lesson-block">
+      <h3>Orden de las palabras</h3>
+      <p>
+        La estructura básica suele ser sujeto + verbo + complemento,
+        como en español.
+      </p>
+      <p class="pt">🇧🇷 Eu quero aprender português.</p>
+      <p class="es">🇪🇸 Quiero aprender portugués.</p>
+    </div>
+
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="lesson">
+    <div class="eyebrow">Fundamental</div>
+    <h2>Ser vs. estar</h2>
+
+    <div class="grid-2">
+
+      <div class="lesson-block">
+        <h3>SER</h3>
+        <p>
+          Se utiliza para identidad, características, origen, profesión
+          y otras situaciones normalmente entendidas como permanentes
+          o definitorias.
+        </p>
+        <p class="pt">🇧🇷 Eu sou costarriquenho.</p>
+        <p class="es">🇪🇸 Soy costarricense.</p>
+        <p class="pt">🇧🇷 Ela é médica.</p>
+        <p class="es">🇪🇸 Ella es médica.</p>
+      </div>
+
+      <div class="lesson-block">
+        <h3>ESTAR</h3>
+        <p>
+          Se utiliza para estados, condiciones y ubicaciones,
+          entre otros usos.
+        </p>
+        <p class="pt">🇧🇷 Eu estou cansado.</p>
+        <p class="es">🇪🇸 Estoy cansado.</p>
+        <p class="pt">🇧🇷 O livro está na mesa.</p>
+        <p class="es">🇪🇸 El libro está sobre la mesa.</p>
+      </div>
+
+    </div>
+  </div>
+
+</section>
+
+<!-- ===================== PRONUNCIACIÓN ===================== -->
+
+<section id="pronunciacion" class="section">
+
+  <div class="eyebrow">Fala brasileira</div>
+  <h1>Pronunciación</h1>
+
+  <p class="lead">
+    El portugués brasileño tiene sonidos que no existen de la misma forma
+    en español. Las aproximaciones escritas aquí sirven como ayuda inicial,
+    pero no sustituyen escuchar a hablantes nativos.
+  </p>
+
+  <div class="note">
+    <b>Importante:</b> una pronunciación escrita como “ñ” o “j”
+    es solamente una aproximación para ayudarte a empezar.
+    No representa exactamente todos los sonidos del portugués.
+  </div>
+
+  <div class="sound-grid">
+
+    <div class="sound-card">
+      <div class="sound-letter">Ã</div>
+      <h3>Vocal nasal</h3>
+      <p>La vocal se produce con resonancia nasal.</p>
+      <p class="pt">mãe</p>
+      <p class="pron">Aproximación: “mã-i”</p>
+      <button class="speak" onclick="speak('mãe')">🔊 Escuchar</button>
+    </div>
+
+    <div class="sound-card">
+      <div class="sound-letter">ÃO</div>
+      <h3>Final -ão</h3>
+      <p>Es uno de los sonidos más característicos del portugués.</p>
+      <p class="pt">não</p>
+      <p class="pron">Aproximación: “nãu”</p>
+      <button class="speak" onclick="speak('não')">🔊 Escuchar</button>
+    </div>
+
+    <div class="sound-card">
+      <div class="sound-letter">NH</div>
+      <h3>NH</h3>
+      <p>Se parece al sonido de “ñ” en español.</p>
+      <p class="pt">minha</p>
+      <p class="pron">Aproximación: “miña”</p>
+      <button class="speak" onclick="speak('minha')">🔊 Escuchar</button>
+    </div>
+
+    <div class="sound-card">
+      <div class="sound-letter">LH</div>
+      <h3>LH</h3>
+      <p>Es un sonido palatal que recuerda al sonido de “ll” en algunas variedades del español.</p>
+      <p class="pt">filho</p>
+      <p class="pron">Aproximación: “fílyu”</p>
+      <button class="speak" onclick="speak('filho')">🔊 Escuchar</button>
+    </div>
+
+    <div class="sound-card">
+      <div class="sound-letter">Ç</div>
+      <h3>Ç</h3>
+      <p>Representa el sonido /s/ delante de ciertas vocales.</p>
+      <p class="pt">coração</p>
+      <p class="pron">Aproximación: “corasãu”</p>
+      <button class="speak" onclick="speak('coração')">🔊 Escuchar</button>
+    </div>
+
+    <div class="sound-card">
+      <div class="sound-letter">RR</div>
+      <h3>RR</h3>
+      <p>
+        En portugués brasileño suele representar un sonido fuerte,
+        cuya realización varía según la región.
+      </p>
+      <p class="pt">carro</p>
+      <button class="speak" onclick="speak('carro')">🔊 Escuchar</button>
+    </div>
+
+    <div class="sound-card">
+      <div class="sound-letter">R</div>
+      <h3>R</h3>
+      <p>
+        El sonido cambia según la posición y la variedad regional.
+        El R inicial de Brasil puede sonar diferente al R español.
+      </p>
+      <p class="pt">Rio</p>
+      <button class="speak" onclick="speak('Rio')">🔊 Escuchar</button>
+    </div>
+
+    <div class="sound-card">
+      <div class="sound-letter">J</div>
+      <h3>J</h3>
+      <p>La J portuguesa representa un sonido parecido al “zh” de algunas lenguas.</p>
+      <p class="pt">jantar</p>
+      <p class="pron">Aproximación: “zhantár”</p>
+      <button class="speak" onclick="speak('jantar')">🔊 Escuchar</button>
+    </div>
+
+    <div class="sound-card">
+      <div class="sound-letter">G</div>
+      <h3>G + E/I</h3>
+      <p>Puede representar el mismo sonido que la J portuguesa.</p>
+      <p class="pt">gente</p>
+      <p class="pron">Aproximación: “zhenti”</p>
+      <button class="speak" onclick="speak('gente')">🔊 Escuchar</button>
+    </div>
+
+    <div class="sound-card">
+      <div class="sound-letter">CH</div>
+      <h3>CH</h3>
+      <p>Normalmente representa un sonido parecido a “sh”.</p>
+      <p class="pt">chave</p>
+      <p class="pron">Aproximación: “shávi”</p>
+      <button class="speak" onclick="speak('chave')">🔊 Escuchar</button>
+    </div>
+
+    <div class="sound-card">
+      <div class="sound-letter">S / SS</div>
+      <h3>S y SS</h3>
+      <p>
+        La pronunciación depende de la posición y del contexto.
+        SS representa normalmente /s/ entre vocales.
+      </p>
+      <p class="pt">passar</p>
+      <button class="speak" onclick="speak('passar')">🔊 Escuchar</button>
+    </div>
+
+    <div class="sound-card">
+      <div class="sound-letter">X</div>
+      <h3>X</h3>
+      <p>
+        La letra X puede representar diferentes sonidos.
+        Es necesario aprender cada palabra y su pronunciación.
+      </p>
+      <p class="pt">xícara</p>
+      <button class="speak" onclick="speak('xícara')">🔊 Escuchar</button>
+    </div>
+
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="lesson">
+    <h2>Consejo para hispanohablantes</h2>
+
+    <div class="lesson-block">
+      <h3>No intentes leer portugués como español.</h3>
+      <p>
+        La escritura puede parecer familiar, pero los sonidos de las vocales,
+        las vocales nasales, algunas consonantes y la entonación son diferentes.
+      </p>
+      <p class="pt">🇧🇷 Eu quero aprender português.</p>
+      <button class="speak" onclick="speak('Eu quero aprender português.')">
+        🔊 Escuchar
+      </button>
+    </div>
+  </div>
+
+</section>
+
+<!-- ===================== NÚMEROS ===================== -->
+
+<section id="numeros" class="section">
+
+  <div class="eyebrow">Base esencial</div>
+  <h1>Números</h1>
+
+  <div class="grid" id="numberGrid"></div>
+
+  <div class="divider"></div>
+
+  <div class="lesson">
+    <div class="lesson-block">
+      <h3>Decenas y números grandes</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Número</th><th>Português</th><th>Español</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>20</td><td>vinte</td><td>veinte</td></tr>
+            <tr><td>30</td><td>trinta</td><td>treinta</td></tr>
+            <tr><td>40</td><td>quarenta</td><td>cuarenta</td></tr>
+            <tr><td>50</td><td>cinquenta</td><td>cincuenta</td></tr>
+            <tr><td>60</td><td>sessenta</td><td>sesenta</td></tr>
+            <tr><td>70</td><td>setenta</td><td>setenta</td></tr>
+            <tr><td>80</td><td>oitenta</td><td>ochenta</td></tr>
+            <tr><td>90</td><td>noventa</td><td>noventa</td></tr>
+            <tr><td>100</td><td>cem</td><td>cien</td></tr>
+            <tr><td>1.000</td><td>mil</td><td>mil</td></tr>
+            <tr><td>10.000</td><td>dez mil</td><td>diez mil</td></tr>
+            <tr><td>100.000</td><td>cem mil</td><td>cien mil</td></tr>
+            <tr><td>1.000.000</td><td>um milhão</td><td>un millón</td></tr>
+            <tr><td>2.000.000</td><td>dois milhões</td><td>dos millones</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ===================== COLORES ===================== -->
+
+<section id="colores" class="section">
+
+  <div class="eyebrow">Vocabulário</div>
+  <h1>Colores</h1>
+
+  <div class="grid" id="colorGrid"></div>
+
+</section>
+
+<!-- ===================== ESPAÑOL VS PORTUGUÉS ===================== -->
+
+<section id="comparacion" class="section">
+
+  <div class="eyebrow">Cuidado con estas palabras</div>
+  <h1>Español vs. Portugués</h1>
+
+  <p class="lead">
+    La cercanía entre ambos idiomas es una ventaja, pero también puede provocar
+    errores. Estas palabras merecen especial atención.
+  </p>
+
+  <div class="grid-2" id="falseFriends"></div>
+
+  <div class="divider"></div>
+
+  <div class="lesson">
+
+    <div class="lesson-block">
+      <h3>Embarazada ≠ embaraçada</h3>
+      <p class="pt">🇧🇷 grávida — embarazada</p>
+      <p class="pt">🇧🇷 embaraçada — avergonzada / incómoda / en una situación embarazosa</p>
+      <div class="note">
+        <b>Falso amigo importante:</b> no uses <i>embaraçada</i> para decir
+        que una mujer está embarazada.
+      </div>
+    </div>
+
+    <div class="lesson-block">
+      <h3>Exquisito</h3>
+      <p>
+        El español “exquisito” suele corresponder a <b>requintado</b>,
+        <b>delicioso</b> o expresiones equivalentes según el contexto.
+      </p>
+      <p class="pt">🇧🇷 A comida está deliciosa.</p>
+      <p class="es">🇪🇸 La comida está deliciosa.</p>
+    </div>
+
+    <div class="lesson-block">
+      <h3>Apellido</h3>
+      <p class="pt">🇧🇷 sobrenome — apellido</p>
+      <p class="es">
+        “Apelido” en portugués brasileño normalmente significa apodo,
+        no apellido.
+      </p>
+    </div>
+
+    <div class="lesson-block">
+      <h3>Oficina</h3>
+      <p class="pt">🇧🇷 escritório — oficina / despacho de trabajo</p>
+      <p class="pt">🇧🇷 oficina — taller</p>
+    </div>
+
+    <div class="lesson-block">
+      <h3>Rato</h3>
+      <p class="pt">🇧🇷 rato — ratón</p>
+      <p class="pt">🇧🇷 momento / instante — según el contexto, “rato” en español no se traduce siempre literalmente.</p>
+    </div>
+
+    <div class="lesson-block">
+      <h3>Presunto</h3>
+      <p class="pt">🇧🇷 presunto — jamón</p>
+      <p class="es">🇪🇸 No significa “supuesto” en este contexto.</p>
+    </div>
+
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="lesson">
+    <div class="lesson-block">
+      <h3>Una diferencia muy importante: você</h3>
+      <p>
+        En portugués brasileño, <b>você</b> se utiliza ampliamente para dirigirse
+        a una persona. Aunque históricamente se relaciona con formas de respeto,
+        en el Brasil moderno su uso cotidiano no equivale simplemente al “usted”
+        formal del español.
+      </p>
+      <p class="pt">🇧🇷 Você trabalha aqui?</p>
+      <p class="es">🇪🇸 ¿Trabajas aquí? / ¿Usted trabaja aquí?</p>
+    </div>
+  </div>
+
+</section>
+
+<!-- ===================== FRASES ===================== -->
+
+<section id="frases" class="section">
+
+  <div class="eyebrow">Comunicación real</div>
+  <h1>Frases útiles</h1>
+
+  <div class="filters" id="phraseFilters"></div>
+
+  <div class="grid" id="phraseGrid"></div>
+
+</section>
+
+<!-- ===================== CONVERSACIÓN ===================== -->
+
+<section id="conversacion" class="section">
+
+  <div class="eyebrow">Hablar</div>
+  <h1>Conversación</h1>
+
+  <p class="lead">
+    Aprende a construir una conversación sencilla antes de preocuparte
+    por hablar perfectamente.
+  </p>
+
+  <div class="lesson">
+
+    <div class="lesson-block">
+      <h3>Conocer a alguien</h3>
+
+      <p class="pt">🇧🇷 Oi! Tudo bem?</p>
+      <p class="es">🇪🇸 ¡Hola! ¿Todo bien?</p>
+      <button class="speak" onclick="speak('Oi! Tudo bem?')">🔊</button>
+
+      <p class="pt">🇧🇷 Tudo bem. E você?</p>
+      <p class="es">🇪🇸 Todo bien. ¿Y tú?</p>
+      <button class="speak" onclick="speak('Tudo bem. E você?')">🔊</button>
+
+      <p class="pt">🇧🇷 Qual é o seu nome?</p>
+      <p class="es">🇪🇸 ¿Cuál es tu nombre?</p>
+
+      <p class="pt">🇧🇷 Meu nome é Randi.</p>
+      <p class="es">🇪🇸 Mi nombre es Randi.</p>
+
+      <p class="pt">🇧🇷 Prazer em conhecer você.</p>
+      <p class="es">🇪🇸 Encantado de conocerte.</p>
+    </div>
+
+    <div class="lesson-block">
+      <h3>En un restaurante</h3>
+
+      <p class="pt">🇧🇷 Eu gostaria de uma mesa para duas pessoas.</p>
+      <p class="es">🇪🇸 Me gustaría una mesa para dos personas.</p>
+
+      <p class="pt">🇧🇷 O que você recomenda?</p>
+      <p class="es">🇪🇸 ¿Qué recomienda?</p>
+
+      <p class="pt">🇧🇷 A conta, por favor.</p>
+      <p class="es">🇪🇸 La cuenta, por favor.</p>
+
+      <p class="pt">🇧🇷 Posso pagar com cartão?</p>
+      <p class="es">🇪🇸 ¿Puedo pagar con tarjeta?</p>
+    </div>
+
+    <div class="lesson-block">
+      <h3>Direcciones</h3>
+
+      <p class="pt">🇧🇷 Onde fica o banheiro?</p>
+      <p class="es">🇪🇸 ¿Dónde está el baño?</p>
+
+      <p class="pt">🇧🇷 Como eu chego ao centro?</p>
+      <p class="es">🇪🇸 ¿Cómo llego al centro?</p>
+
+      <p class="pt">🇧🇷 É longe daqui?</p>
+      <p class="es">🇪🇸 ¿Está lejos de aquí?</p>
+    </div>
+
+    <div class="lesson-block">
+      <h3>Formal vs. informal</h3>
+
+      <p class="pt">Informal: Oi! Tudo bem?</p>
+      <p class="pt">Más neutro: Olá! Tudo bem?</p>
+      <p class="pt">Cortesía: Por favor.</p>
+      <p class="pt">Cortesía: Obrigado / Obrigada.</p>
+
+      <div class="note">
+        <b>Obrigado / Obrigada:</b> tradicionalmente, quien habla utiliza
+        <i>obrigado</i> si se identifica como masculino y <i>obrigada</i>
+        si se identifica como femenino.
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ===================== EJERCICIOS ===================== -->
+
+<section id="ejercicios" class="section">
+
+  <div class="eyebrow">Práctica</div>
+  <h1>Ejercicios</h1>
+
+  <p class="lead">
+    No importa equivocarte. Lo importante es entender por qué.
+  </p>
+
+  <div class="exercise card">
+
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:15px">
+      <div>
+        <div class="eyebrow" id="exerciseType">Vocabulario</div>
+        <span id="exerciseCounter">Pregunta 1</span>
+      </div>
+      <b id="exerciseScore">0 puntos</b>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="question" id="question">Cargando...</div>
+
+    <div class="options" id="options"></div>
+
+    <div class="feedback" id="feedback"></div>
+
+    <button class="btn" id="nextQuestion" style="margin-top:18px;display:none">
+      Siguiente
+    </button>
+
+  </div>
+
+  <div style="text-align:center;margin-top:18px">
+    <button class="btn secondary" onclick="restartQuiz()">Reiniciar práctica</button>
+  </div>
+
+</section>
+
+<!-- ===================== REPASO ===================== -->
+
+<section id="repaso" class="section">
+
+  <div class="eyebrow">Memoria</div>
+  <h1>Repaso</h1>
+
+  <p class="lead">
+    Vuelve a practicar palabras y conceptos que ya has encontrado.
+  </p>
+
+  <div class="stat-grid">
+
+    <div class="stat">
+      <div class="stat-number" id="reviewWords">0</div>
+      <div class="stat-label">Palabras estudiadas</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-number" id="reviewCorrect">0</div>
+      <div class="stat-label">Respuestas correctas</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-number" id="reviewWrong">0</div>
+      <div class="stat-label">Incorrectas</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-number" id="reviewExercises">0</div>
+      <div class="stat-label">Ejercicios</div>
+    </div>
+
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="card">
+    <div class="eyebrow">Repaso rápido</div>
+    <h3 id="reviewWord">Presiona comenzar</h3>
+    <p id="reviewMeaning" style="color:#666;margin:5px 0 15px"></p>
+    <button class="btn" onclick="startReview()">Comenzar</button>
+    <button class="btn secondary" id="reviewSpeak" style="display:none" onclick="speak(currentReviewWord)">
+      🔊 Escuchar
+    </button>
+  </div>
+
+</section>
+
+<!-- ===================== PROGRESO ===================== -->
+
+<section id="progreso" class="section">
+
+  <div class="eyebrow">Mi aprendizaje</div>
+  <h1>Progreso</h1>
+
+  <div class="stat-grid">
+
+    <div class="stat">
+      <div class="stat-number" id="statWords">0</div>
+      <div class="stat-label">Palabras aprendidas</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-number" id="statExercises">0</div>
+      <div class="stat-label">Ejercicios</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-number" id="statCorrect">0</div>
+      <div class="stat-label">Correctas</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-number" id="statScore">0</div>
+      <div class="stat-label">Puntuación</div>
+    </div>
+
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="card">
+    <div class="eyebrow">Nivel general</div>
+    <h3 id="levelText">Principiante</h3>
+
+    <div style="display:flex;justify-content:space-between;font-size:13px;margin:15px 0 7px">
+      <span>Progreso</span>
+      <b id="progressPercent">0%</b>
+    </div>
+
+    <div class="progress">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="eyebrow">Logros</div>
+  <h2>Conquistas</h2>
+
+  <div class="badges">
+
+    <div class="badge" id="badgeLesson">
+      <div class="badge-icon">🔥</div>
+      <b>Primera lección</b>
+      <p>Estudia tu primer contenido.</p>
+    </div>
+
+    <div class="badge" id="badgeWords">
+      <div class="badge-icon">📚</div>
+      <b>50 palabras</b>
+      <p>Estudia 50 palabras.</p>
+    </div>
+
+    <div class="badge" id="badgePractice">
+      <div class="badge-icon">🗣</div>
+      <b>Primera práctica</b>
+      <p>Completa un ejercicio.</p>
+    </div>
+
+    <div class="badge" id="badgeVerbs">
+      <div class="badge-icon">⚡</div>
+      <b>10 verbos</b>
+      <p>Explora diez verbos.</p>
+    </div>
+
+    <div class="badge" id="badge100">
+      <div class="badge-icon">🏆</div>
+      <b>100 ejercicios</b>
+      <p>Completa cien ejercicios.</p>
+    </div>
+
+    <div class="badge" id="badgeDialogue">
+      <div class="badge-icon">🇧🇷</div>
+      <b>Primer diálogo</b>
+      <p>Visita la sección de conversación.</p>
+    </div>
+
+  </div>
+
+  <div class="divider"></div>
+
+  <button class="btn secondary" onclick="resetProgress()">
+    Restablecer progreso
+  </button>
+
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+
+<footer>
+  RANDIÑO · Português Brasileiro · Aprende, pratica, repete.
+</footer>
+
+</main>
+</div>
+
+<!-- =========================================================
+     JAVASCRIPT
+     ========================================================= -->
+
+<script>
+
+/* =========================================================
+   DATOS EDUCATIVOS
+   ========================================================= */
+
+const vocabulary = [
+
+  ["Olá","olá","hola","Saludos","Olá! Tudo bem?","¡Hola! ¿Todo bien?"],
+  ["Oi","ói","hola","Saludos","Oi, tudo bem?","¡Hola! ¿Todo bien?"],
+  ["Bom dia","bom día","buenos días","Saludos","Bom dia!","¡Buenos días!"],
+  ["Boa tarde","boa tárdchi","buenas tardes","Saludos","Boa tarde!","¡Buenas tardes!"],
+  ["Boa noite","boa nóitchi","buenas noches","Saludos","Boa noite!","¡Buenas noches!"],
+  ["Tchau","châu","adiós / chao","Saludos","Tchau! Até amanhã.","¡Chao! Hasta mañana."],
+  ["Obrigado","obrigádu","gracias","Saludos","Muito obrigado.","Muchas gracias."],
+  ["Por favor","por favór","por favor","Saludos","Por favor, espere.","Por favor, espere."],
+  ["Desculpa","desculpa","perdón","Saludos","Desculpa pelo atraso.","Perdón por el retraso."],
+  ["Sim","sim","sí","Cotidiano","Sim, eu quero.","Sí, quiero."],
+  ["Não","nãu","no","Cotidiano","Não, obrigado.","No, gracias."],
+  ["Talvez","talvés","tal vez","Cotidiano","Talvez amanhã.","Tal vez mañana."],
+
+  ["um","um","uno","Números","Um café, por favor.","Un café, por favor."],
+  ["dois","dóis","dos","Números","Tenho dois irmãos.","Tengo dos hermanos."],
+  ["três","três","tres","Números","Três pessoas.","Tres personas."],
+  ["quatro","cuátru","cuatro","Números","Quatro livros.","Cuatro libros."],
+  ["cinco","sincu","cinco","Números","Cinco minutos.","Cinco minutos."],
+  ["seis","seis","seis","Números","Seis dias.","Seis días."],
+  ["sete","séti","siete","Números","Sete dias.","Siete días."],
+  ["oito","óitu","ocho","Números","Oito horas.","Ocho horas."],
+  ["nove","nóvi","nueve","Números","Nove reais.","Nueve reales."],
+  ["dez","dés","diez","Números","Dez minutos.","Diez minutos."],
+
+  ["vermelho","vermélio","rojo","Colores","O carro é vermelho.","El carro es rojo."],
+  ["azul","azúl","azul","Colores","O céu é azul.","El cielo es azul."],
+  ["verde","vérdji","verde","Colores","A camisa é verde.","La camisa es verde."],
+  ["amarelo","amarélu","amarillo","Colores","O carro amarelo.","El carro amarillo."],
+  ["preto","pré-tu","negro","Colores","O gato é preto.","El gato es negro."],
+  ["branco","brã-cu","blanco","Colores","A parede é branca.","La pared es blanca."],
+  ["cinza","sínza","gris","Colores","O céu está cinza.","El cielo está gris."],
+  ["marrom","marrõ","marrón","Colores","A mesa é marrom.","La mesa es marrón."],
+  ["rosa","róza","rosa","Colores","A camisa é rosa.","La camisa es rosa."],
+  ["roxo","róshu","morado","Colores","O vestido é roxo.","El vestido es morado."],
+
+  ["mãe","mãi","madre","Familia","Minha mãe mora aqui.","Mi madre vive aquí."],
+  ["pai","pái","padre","Familia","Meu pai trabalha muito.","Mi padre trabaja mucho."],
+  ["irmão","irmãu","hermano","Familia","Meu irmão é mais velho.","Mi hermano es mayor."],
+  ["irmã","irmã","hermana","Familia","Minha irmã estuda.","Mi hermana estudia."],
+  ["filho","fíliu","hijo","Familia","Meu filho está em casa.","Mi hijo está en casa."],
+  ["filha","fília","hija","Familia","Minha filha está aqui.","Mi hija está aquí."],
+  ["família","família","familia","Familia","Minha família é grande.","Mi familia es grande."],
+
+  ["casa","cáza","casa","Casa","Minha casa é pequena.","Mi casa es pequeña."],
+  ["quarto","cuártu","habitación / cuarto","Casa","Meu quarto é pequeno.","Mi habitación es pequeña."],
+  ["cozinha","cozíña","cocina","Casa","A cozinha está limpa.","La cocina está limpia."],
+  ["banheiro","bañéiru","baño","Casa","Onde fica o banheiro?","¿Dónde está el baño?"],
+  ["porta","pórta","puerta","Casa","Feche a porta.","Cierra la puerta."],
+  ["janela","zhanéla","ventana","Casa","Abra a janela.","Abre la ventana."],
+  ["mesa","méza","mesa","Casa","O livro está na mesa.","El libro está sobre la mesa."],
+  ["cadeira","cadéira","silla","Casa","Sente-se na cadeira.","Siéntese en la silla."],
+
+  ["água","água","agua","Comida","Eu quero água.","Quiero agua."],
+  ["café","café","café","Bebidas","Eu quero um café.","Quiero un café."],
+  ["cerveja","servézha","cerveza","Bebidas","Uma cerveja, por favor.","Una cerveza, por favor."],
+  ["leite","léitchi","leche","Bebidas","Eu bebo leite.","Bebo leche."],
+  ["arroz","arrós","arroz","Comida","Eu gosto de arroz.","Me gusta el arroz."],
+  ["carne","cárni","carne","Comida","A carne está boa.","La carne está buena."],
+  ["frango","frãngu","pollo","Comida","Eu quero frango.","Quiero pollo."],
+  ["peixe","péishi","pescado / pez","Comida","Eu gosto de peixe.","Me gusta el pescado."],
+  ["pão","pãu","pan","Comida","Quero pão.","Quiero pan."],
+  ["queijo","quéizhu","queso","Comida","Eu gosto de queijo.","Me gusta el queso."],
+  ["arroz","arrós","arroz","Comida","O arroz está quente.","El arroz está caliente."],
+
+  ["cachorro","cachórru","perro","Animales","Meu cachorro é pequeno.","Mi perro es pequeño."],
+  ["gato","gátu","gato","Animales","O gato está dormindo.","El gato está durmiendo."],
+  ["peixe","péishi","pez","Animales","O peixe está na água.","El pez está en el agua."],
+  ["pássaro","pássaru","pájaro","Animales","O pássaro está voando.","El pájaro está volando."],
+
+  ["cabeça","cabéssa","cabeza","Cuerpo","Minha cabeça dói.","Me duele la cabeza."],
+  ["olho","óliu","ojo","Cuerpo","Meu olho está vermelho.","Mi ojo está rojo."],
+  ["boca","bóca","boca","Cuerpo","Abra a boca.","Abre la boca."],
+  ["mão","mãu","mano","Cuerpo","Lave as mãos.","Lávate las manos."],
+  ["pé","pé","pie","Cuerpo","Meu pé dói.","Me duele el pie."],
+  ["coração","corasãu","corazón","Cuerpo","Meu coração está acelerado.","Mi corazón está acelerado."],
+
+  ["camisa","camíza","camisa","Ropa","Minha camisa é branca.","Mi camisa es blanca."],
+  ["calça","cálsa","pantalón","Ropa","Minha calça é preta.","Mi pantalón es negro."],
+  ["sapato","sapátu","zapato","Ropa","Meu sapato é novo.","Mi zapato es nuevo."],
+  ["vestido","vestchídu","vestido","Ropa","O vestido é bonito.","El vestido es bonito."],
+
+  ["trabalho","trabálio","trabajo","Trabajo","Eu vou para o trabalho.","Voy al trabajo."],
+  ["escola","escóla","escuela","Escuela","A escola fica perto.","La escuela está cerca."],
+  ["professor","profesór","profesor","Escuela","O professor explica a lição.","El profesor explica la lección."],
+  ["aluno","alúnu","alumno","Escuela","O aluno estuda português.","El alumno estudia portugués."],
+
+  ["cidade","sidádji","ciudad","Ciudad","A cidade é grande.","La ciudad es grande."],
+  ["rua","rú-a","calle","Ciudad","A rua é movimentada.","La calle tiene mucho movimiento."],
+  ["centro","séntru","centro","Ciudad","Vou ao centro.","Voy al centro."],
+  ["mercado","mercádu","mercado","Compras","Vou ao mercado.","Voy al mercado."],
+  ["loja","lózha","tienda","Compras","A loja está aberta.","La tienda está abierta."],
+  ["dinheiro","djiñéiru","dinero","Dinero","Não tenho dinheiro.","No tengo dinero."],
+  ["cartão","cartãu","tarjeta","Dinero","Posso pagar com cartão?","¿Puedo pagar con tarjeta?"],
+
+  ["carro","cárru","carro","Transporte","Meu carro está aqui.","Mi carro está aquí."],
+  ["ônibus","ônibus","autobús","Transporte","Vou de ônibus.","Voy en autobús."],
+  ["avião","aviãu","avión","Viajes","O avião chegou.","El avión llegó."],
+  ["aeroporto","aeropórtu","aeropuerto","Viajes","Onde fica o aeroporto?","¿Dónde está el aeropuerto?"],
+  ["hotel","otel","hotel","Viajes","O hotel fica perto.","El hotel queda cerca."],
+  ["quarto","cuártu","habitación","Hotel","Meu quarto está pronto.","Mi habitación está lista."],
+
+  ["feliz","felís","feliz","Emociones","Estou feliz hoje.","Estoy feliz hoy."],
+  ["triste","trístchi","triste","Emociones","Estou triste.","Estoy triste."],
+  ["cansado","cansádu","cansado","Emociones","Estou cansado.","Estoy cansado."],
+  ["preocupado","preocupádu","preocupado","Emociones","Estou preocupado.","Estoy preocupado."],
+  ["medo","médu","miedo","Emociones","Estou com medo.","Tengo miedo."],
+  ["amor","amór","amor","Relaciones","O amor é importante.","El amor es importante."],
+
+  ["tempo","têmpu","tiempo","Tiempo","Não tenho tempo.","No tengo tiempo."],
+  ["hoje","ózhi","hoy","Tiempo","Hoje está quente.","Hoy hace calor."],
+  ["amanhã","amãñã","mañana","Tiempo","Até amanhã.","Hasta mañana."],
+  ["ontem","õntem","ayer","Tiempo","Eu trabalhei ontem.","Trabajé ayer."],
+  ["agora","agóra","ahora","Tiempo","Estou ocupado agora.","Estoy ocupado ahora."],
+
+  ["calor","calór","calor","Clima","Está muito calor.","Hace mucho calor."],
+  ["frio","fríu","frío","Clima","Está frio hoje.","Hace frío hoy."],
+  ["chuva","shúva","lluvia","Clima","Está chovendo.","Está lloviendo."],
+  ["sol","sól","sol","Clima","O sol está forte.","El sol está fuerte."],
+  ["mar","mar","mar","Naturaleza","O mar está bonito.","El mar está bonito."],
+
+  ["computador","computadór","computadora","Tecnología","Meu computador é novo.","Mi computadora es nueva."],
+  ["celular","selulár","teléfono móvil","Tecnología","Meu celular está carregando.","Mi celular está cargando."],
+  ["internet","internet","internet","Tecnología","A internet está lenta.","El internet está lento."],
+
+  ["saúde","saú-dji","salud","Salud","A saúde é importante.","La salud es importante."],
+  ["médico","médjicu","médico","Salud","Preciso falar com o médico.","Necesito hablar con el médico."],
+  ["hospital","ospital","hospital","Salud","O hospital fica perto.","El hospital está cerca."],
+
+  ["futebol","futchiból","fútbol","Deportes","Eu gosto de futebol.","Me gusta el fútbol."],
+  ["jogo","zhógu","juego / partido","Deportes","Vamos assistir ao jogo.","Vamos a ver el partido."],
+  ["música","múzica","música","Hobbies","Eu gosto de música.","Me gusta la música."],
+  ["filme","fílmi","película","Hobbies","Vamos assistir a um filme.","Vamos a ver una película."]
+];
+
+/* VERBOS */
+
+const verbs = [
+
+  ["ser","ser","ser","Eu sou brasileiro.","Yo soy brasileño.",
+   ["sou","é","é","somos","são","são"]],
+
+  ["estar","estár","estar","Eu estou cansado.","Estoy cansado.",
+   ["estou","está","está","estamos","estão","estão"]],
+
+  ["ter","têr","tener","Eu tenho tempo.","Tengo tiempo.",
+   ["tenho","tem","tem","temos","têm","têm"]],
+
+  ["haver","avêr","haber","Há muitas pessoas aqui.","Hay muchas personas aquí.",
+   ["—","há","há","—","—","—"]],
+
+  ["ir","ir","ir","Eu vou para casa.","Voy a casa.",
+   ["vou","vai","vai","vamos","vão","vão"]],
+
+  ["vir","vir","venir","Eu venho amanhã.","Vengo mañana.",
+   ["venho","vem","vem","vimos","vêm","vêm"]],
+
+  ["fazer","fazêr","hacer","Eu faço isso todos os dias.","Hago eso todos los días.",
+   ["faço","faz","faz","fazemos","fazem","fazem"]],
+
+  ["poder","podêr","poder","Eu posso ajudar.","Puedo ayudar.",
+   ["posso","pode","pode","podemos","podem","podem"]],
+
+  ["querer","querêr","querer","Eu quero aprender.","Quiero aprender.",
+   ["quero","quer","quer","queremos","querem","querem"]],
+
+  ["dever","devêr","deber","Você deve estudar.","Debes estudiar.",
+   ["devo","deve","deve","devemos","devem","devem"]],
+
+  ["saber","sabêr","saber","Eu sei a resposta.","Sé la respuesta.",
+   ["sei","sabe","sabe","sabemos","sabem","sabem"]],
+
+  ["conhecer","conhecêr","conocer","Eu conheço essa cidade.","Conozco esa ciudad.",
+   ["conheço","conhece","conhece","conhecemos","conhecem","conhecem"]],
+
+  ["dizer","dizêr","decir","Eu digo a verdade.","Digo la verdad.",
+   ["digo","diz","diz","dizemos","dizem","dizem"]],
+
+  ["falar","falár","hablar","Eu falo português.","Hablo portugués.",
+   ["falo","fala","fala","falamos","falam","falam"]],
+
+  ["dar","dar","dar","Eu dou um presente.","Doy un regalo.",
+   ["dou","dá","dá","damos","dão","dão"]],
+
+  ["ver","ver","ver","Eu vejo você amanhã.","Te veo mañana.",
+   ["vejo","vê","vê","vemos","veem","veem"]],
+
+  ["ouvir","ouvir","oír","Eu ouço música.","Escucho música.",
+   ["ouço","ouve","ouve","ouvimos","ouvem","ouvem"]],
+
+  ["comer","comêr","comer","Eu como arroz.","Como arroz.",
+   ["como","come","come","comemos","comem","comem"]],
+
+  ["beber","bebêr","beber","Eu bebo água.","Bebo agua.",
+   ["bebo","bebe","bebe","bebemos","bebem","bebem"]],
+
+  ["dormir","dormír","dormir","Eu durmo cedo.","Duermo temprano.",
+   ["durmo","dorme","dorme","dormimos","dormem","dormem"]],
+
+  ["viver","vivêr","vivir","Eu vivo no Brasil.","Vivo en Brasil.",
+   ["vivo","vive","vive","vivemos","vivem","vivem"]],
+
+  ["morar","morár","vivir / residir","Eu moro aqui.","Vivo aquí.",
+   ["moro","mora","mora","moramos","moram","moram"]],
+
+  ["trabalhar","trabaliár","trabajar","Eu trabalho muito.","Trabajo mucho.",
+   ["trabalho","trabalha","trabalha","trabalhamos","trabalham","trabalham"]],
+
+  ["estudar","estudár","estudiar","Eu estudo português.","Estudio portugués.",
+   ["estudo","estuda","estuda","estudamos","estudam","estudam"]],
+
+  ["gostar","gostár","gustar","Eu gosto de música.","Me gusta la música.",
+   ["gosto","gosta","gosta","gostamos","gostam","gostam"]],
+
+  ["precisar","precisár","necesitar","Eu preciso de ajuda.","Necesito ayuda.",
+   ["preciso","precisa","precisa","precisamos","precisam","precisam"]],
+
+  ["achar","achár","creer / encontrar","Eu acho que sim.","Creo que sí.",
+   ["acho","acha","acha","achamos","acham","acham"]],
+
+  ["pensar","pensár","pensar","Eu penso nisso.","Pienso en eso.",
+   ["penso","pensa","pensa","pensamos","pensam","pensam"]],
+
+  ["ficar","ficár","quedarse / estar","Eu fico em casa.","Me quedo en casa.",
+   ["fico","fica","fica","ficamos","ficam","ficam"]],
+
+  ["levar","levár","llevar","Eu levo o livro.","Llevo el libro.",
+   ["levo","leva","leva","levamos","levam","levam"]],
+
+  ["trazer","trazêr","traer","Eu trago comida.","Traigo comida.",
+   ["trago","traz","traz","trazemos","trazem","trazem"]],
+
+  ["pegar","pegár","agarrar / tomar","Vou pegar o ônibus.","Voy a tomar el autobús.",
+   ["pego","pega","pega","pegamos","pegam","pegam"]],
+
+  ["colocar","colocár","poner","Eu coloco o livro aqui.","Pongo el libro aquí.",
+   ["coloco","coloca","coloca","colocamos","colocam","colocam"]],
+
+  ["deixar","deixár","dejar","Vou deixar aqui.","Voy a dejarlo aquí.",
+   ["deixo","deixa","deixa","deixamos","deixam","deixam"]],
+
+  ["começar","comessár","comenzar","A aula começa agora.","La clase comienza ahora.",
+   ["começo","começa","começa","começamos","começam","começam"]],
+
+  ["terminar","terminár","terminar","A aula termina às cinco.","La clase termina a las cinco.",
+   ["termino","termina","termina","terminamos","terminam","terminam"]],
+
+  ["entender","entendêr","entender","Eu entendo português.","Entiendo portugués.",
+   ["entendo","entende","entende","entendemos","entendem","entendem"]],
+
+  ["aprender","aprendêr","aprender","Eu aprendo rápido.","Aprendo rápido.",
+   ["aprendo","aprende","aprende","aprendemos","aprendem","aprendem"]],
+
+  ["ensinar","ensinár","enseñar","Eu ensino português.","Enseño portugués.",
+   ["ensino","ensina","ensina","ensinamos","ensinam","ensinam"]],
+
+  ["usar","usár","usar","Eu uso o celular.","Uso el celular.",
+   ["uso","usa","usa","usamos","usam","usam"]],
+
+  ["tentar","tentár","intentar","Vou tentar novamente.","Voy a intentar nuevamente.",
+   ["tento","tenta","tenta","tentamos","tentam","tentam"]],
+
+  ["conseguir","conseguír","conseguir / lograr","Eu consigo fazer isso.","Consigo hacer eso.",
+   ["consigo","consegue","consegue","conseguimos","conseguem","conseguem"]]
+];
+
+/* NÚMEROS */
+
+const numbers = [
+  ["0","zero"],["1","um"],["2","dois"],["3","três"],["4","quatro"],
+  ["5","cinco"],["6","seis"],["7","sete"],["8","oito"],["9","nove"],
+  ["10","dez"],["11","onze"],["12","doze"],["13","treze"],["14","quatorze"],
+  ["15","quinze"],["16","dezesseis"],["17","dezessete"],["18","dezoito"],
+  ["19","dezenove"],["20","vinte"]
+];
+
+/* COLORES */
+
+const colors = [
+  ["vermelho","vermélio","rojo","O carro é vermelho."],
+  ["azul","azúl","azul","O céu é azul."],
+  ["verde","vérdji","verde","A camisa é verde."],
+  ["amarelo","amarélu","amarillo","O carro é amarelo."],
+  ["preto","pré-tu","negro","O gato é preto."],
+  ["branco","brã-cu","blanco","A parede é branca."],
+  ["cinza","sínza","gris","O céu está cinza."],
+  ["marrom","marrõ","marrón","A mesa é marrom."],
+  ["rosa","róza","rosa","A camisa é rosa."],
+  ["roxo","róshu","morado","O vestido é roxo."]
+];
+
+/* FALSOS AMIGOS */
+
+const falseFriends = [
+  ["embaraçada","avergonzada / incómoda","embarazada","grávida"],
+  ["apelido","apodo","apellido","sobrenome"],
+  ["presunto","jamón","presunto (español)","supuesto"],
+  ["oficina","taller","oficina","escritório"],
+  ["esquisito","extraño / raro","exquisito","requintado / delicioso según contexto"],
+  ["largo","ancho","largo","comprido"],
+  ["pasta","carpeta / pasta","pasta (comida)","massa"],
+  ["vaso","vaso / recipiente","vaso (planta)","vaso de planta"]
+];
+
+/* FRASES */
+
+const phrases = [
+  ["Oi! Tudo bem?","ói, túdu bêim","¡Hola! ¿Todo bien?","Saludos","Informal"],
+  ["Olá! Como você está?","olá, cómu vosê está","¡Hola! ¿Cómo estás?","Saludos","Neutro"],
+  ["Bom dia!","bom djía","¡Buenos días!","Saludos","Neutro"],
+  ["Muito prazer.","múitu prazêr","Mucho gusto.","Saludos","Neutro"],
+  ["Qual é o seu nome?","cuau é u séu nómi","¿Cuál es tu nombre?","Conocer personas","Neutro"],
+  ["Meu nome é Randi.","méu nómi é Randi","Mi nombre es Randi.","Conocer personas","Neutro"],
+  ["De onde você é?","dji õndji vosê é","¿De dónde eres?","Conocer personas","Neutro"],
+  ["Eu sou da Costa Rica.","eu sou da cósta rrica","Soy de Costa Rica.","Conocer personas","Neutro"],
+  ["Você fala inglês?","vosê fala inglês","¿Hablas inglés?","Conversación","Neutro"],
+  ["Eu estou aprendendo português.","eu estou aprendendo portugués","Estoy aprendiendo portugués.","Conversación","Neutro"],
+  ["Pode falar mais devagar?","pódji falár mais devagár","¿Puede hablar más despacio?","Conversación","Neutro"],
+  ["Não entendi.","nãu entendji","No entendí.","Conversación","Neutro"],
+  ["Pode repetir, por favor?","pódji repetír por favór","¿Puede repetir, por favor?","Conversación","Neutro"],
+  ["Quanto custa?","cuãntu cústa","¿Cuánto cuesta?","Compras","Neutro"],
+  ["Quero comprar isto.","quéru comprár ístu","Quiero comprar esto.","Compras","Neutro"],
+  ["Onde fica o banheiro?","õndji fica u bañéiru","¿Dónde está el baño?","Viajes","Neutro"],
+  ["Onde fica o hotel?","õndji fica u otél","¿Dónde está el hotel?","Viajes","Neutro"],
+  ["Preciso de ajuda.","precízu dji ajuda","Necesito ayuda.","Emergencias","Neutro"],
+  ["Chame a polícia.","shámi a polícia","Llame a la policía.","Emergencias","Neutro"],
+  ["A conta, por favor.","a conta por favór","La cuenta, por favor.","Restaurante","Neutro"],
+  ["Eu gostaria de água.","eu gostaría dji água","Me gustaría agua.","Restaurante","Cortés"],
+  ["O que você recomenda?","u que vosê recomenda","¿Qué recomienda?","Restaurante","Neutro"],
+  ["Posso pagar com cartão?","póssu pagár com cartãu","¿Puedo pagar con tarjeta?","Restaurante","Neutro"],
+  ["Até amanhã!","até amãñã","¡Hasta mañana!","Saludos","Neutro"],
+  ["Até logo!","até lógu","¡Hasta luego!","Saludos","Neutro"],
+  ["Tchau!","châu","¡Chao!","Saludos","Informal"]
+];
+
+/* =========================================================
+   ESTADO LOCAL
+   ========================================================= */
+
+let state = JSON.parse(localStorage.getItem("randinoState")) || {
+  studied:[],
+  correct:0,
+  wrong:0,
+  exercises:0,
+  score:0,
+  sections:[],
+  verbsSeen:0,
+  dialogue:false
+};
+
+function saveState(){
+  localStorage.setItem("randinoState",JSON.stringify(state));
+}
+
+/* =========================================================
+   NAVEGACIÓN
+   ========================================================= */
+
+function showSection(id){
+
+  document.querySelectorAll(".section").forEach(s=>{
+    s.classList.remove("active");
+  });
+
+  const target=document.getElementById(id);
+
+  if(!target)return;
+
+  target.classList.add("active");
+
+  document.querySelectorAll("[data-section]").forEach(btn=>{
+    btn.classList.toggle("active",btn.dataset.section===id);
+  });
+
+  if(!state.sections.includes(id)){
+    state.sections.push(id);
+    if(id==="conversacion") state.dialogue=true;
+    saveState();
+    updateProgress();
+  }
+
+  document.getElementById("sidebar").classList.remove("open");
+
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+document.querySelectorAll("[data-section]").forEach(btn=>{
+  btn.addEventListener("click",()=>showSection(btn.dataset.section));
+});
+
+document.getElementById("menuBtn").addEventListener("click",()=>{
+  document.getElementById("sidebar").classList.toggle("open");
+});
+
+/* =========================================================
+   AUDIO
+   ========================================================= */
+
+function speak(text){
+
+  if(!("speechSynthesis" in window)){
+    alert("Tu navegador no dispone de SpeechSynthesis.");
+    return;
+  }
+
+  speechSynthesis.cancel();
+
+  const utterance=new SpeechSynthesisUtterance(text);
+  utterance.lang="pt-BR";
+  utterance.rate=.82;
+  utterance.pitch=1;
+
+  const voices=speechSynthesis.getVoices();
+
+  const voice=voices.find(v=>
+    v.lang && v.lang.toLowerCase().startsWith("pt-br")
+  );
+
+  if(voice) utterance.voice=voice;
+
+  speechSynthesis.speak(utterance);
+}
+
+/* =========================================================
+   VOCABULARIO
+   ========================================================= */
+
+let currentCategory="Todos";
+
+function renderFilters(){
+
+  const categories=["Todos",...new Set(vocabulary.map(v=>v[3]))];
+
+  document.getElementById("filters").innerHTML=categories.map(c=>
+    `<button class="filter ${c==="Todos"?"active":""}"
+      onclick="setCategory('${escapeAttr(c)}')">${c}</button>`
+  ).join("");
+}
+
+function setCategory(category){
+
+  currentCategory=category;
+
+  document.querySelectorAll("#filters .filter").forEach(btn=>{
+    btn.classList.toggle("active",btn.textContent===category);
+  });
+
+  renderVocabulary();
+}
+
+function renderVocabulary(){
+
+  const search=(document.getElementById("vocabSearch")?.value||"")
+    .toLowerCase()
+    .trim();
+
+  let list=vocabulary.filter(v=>{
+
+    const categoryOK=
+      currentCategory==="Todos" || v[3]===currentCategory;
+
+    const searchOK=!search ||
+      v[0].toLowerCase().includes(search) ||
+      v[2].toLowerCase().includes(search) ||
+      v[3].toLowerCase().includes(search) ||
+      v[4].toLowerCase().includes(search);
+
+    return categoryOK && searchOK;
+  });
+
+  const grid=document.getElementById("vocabGrid");
+
+  grid.innerHTML=list.map((v,i)=>{
+
+    const key=v[0];
+
+    return `
+      <article class="vocab-card">
+        <div class="vocab-category">${v[3]}</div>
+        <div class="vocab-word">${v[0]}</div>
+        <div class="pron">🔊 ${v[1]}</div>
+        <div class="vocab-meaning">🇪🇸 ${v[2]}</div>
+
+        <div class="vocab-example">
+          <b>🇧🇷 ${v[4]}</b><br>
+          <span>🇪🇸 ${v[5]}</span>
+        </div>
+
+        <button class="speak" onclick="speak(${JSON.stringify(key)})">
+          🔊 Escuchar
+        </button>
+
+        <button class="speak" onclick="markStudied(${JSON.stringify(key)})">
+          ✓ Estudiada
+        </button>
+      </article>
+    `;
+  }).join("");
+
+  if(!list.length){
+    grid.innerHTML=`
+      <div class="card" style="grid-column:1/-1;text-align:center">
+        No encontramos esa palabra.
+      </div>`;
+  }
+}
+
+function markStudied(word){
+
+  if(!state.studied.includes(word)){
+    state.studied.push(word);
+    saveState();
+    updateProgress();
+  }
+}
+
+/* =========================================================
+   VERBOS
+   ========================================================= */
+
+function renderVerbs(){
+
+  const search=(document.getElementById("verbSearch")?.value||"")
+    .toLowerCase();
+
+  const list=verbs.filter(v=>
+    !search ||
+    v[0].includes(search) ||
+    v[2].toLowerCase().includes(search)
+  );
+
+  document.getElementById("verbList").innerHTML=list.map(v=>{
+
+    const persons=["Eu","Você","Ele/Ela","Nós","Vocês","Eles/Elas"];
+
+    return `
+      <div class="lesson-block">
+
+        <div style="display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap">
+          <div>
+            <div class="eyebrow">Infinitivo</div>
+            <h2>${v[0]}</h2>
+            <p class="pron">Pronunciación aproximada: ${v[1]}</p>
+            <p>🇪🇸 ${v[2]}</p>
+          </div>
+
+          <button class="btn small"
+            onclick="speak(${JSON.stringify(v[0])})">
+            🔊 Escuchar
+          </button>
+        </div>
+
+        <div class="example">
+          <strong>🇧🇷 ${v[3]}</strong>
+          <span class="es">🇪🇸 ${v[4]}</span>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Persona</th><th>Presente</th></tr>
+            </thead>
+            <tbody>
+              ${v[5].map((form,i)=>`
+                <tr>
+                  <td>${persons[i]}</td>
+                  <td><b>${form}</b></td>
+                </tr>
+              `).join("")}
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    `;
+  }).join("");
+
+  state.verbsSeen=Math.max(state.verbsSeen,list.length>0?1:0);
+  saveState();
+}
+
+/* =========================================================
+   NÚMEROS
+   ========================================================= */
+
+function renderNumbers(){
+
+  document.getElementById("numberGrid").innerHTML=
+    numbers.map(n=>`
+      <div class="card clickable"
+        onclick="speak(${JSON.stringify(n[1])})">
+        <div class="eyebrow">${n[0]}</div>
+        <h3>${n[1]}</h3>
+        <p>🔊 Escuchar</p>
+      </div>
+    `).join("");
+}
+
+/* =========================================================
+   COLORES
+   ========================================================= */
+
+function renderColors(){
+
+  document.getElementById("colorGrid").innerHTML=
+    colors.map(c=>`
+      <div class="vocab-card">
+        <div class="vocab-word">${c[0]}</div>
+        <div class="pron">🔊 ${c[1]}</div>
+        <div class="vocab-meaning">🇪🇸 ${c[2]}</div>
+        <div class="vocab-example">
+          🇧🇷 ${c[3]}
+        </div>
+        <button class="speak"
+          onclick="speak(${JSON.stringify(c[0])})">
+          🔊 Escuchar
+        </button>
+      </div>
+    `).join("");
+}
+
+/* =========================================================
+   FALSOS AMIGOS
+   ========================================================= */
+
+function renderFalseFriends(){
+
+  document.getElementById("falseFriends").innerHTML=
+    falseFriends.map(f=>`
+      <div class="lesson-block">
+        <div class="eyebrow">Falso amigo</div>
+        <h3>${f[0]}</h3>
+        <p><b>🇧🇷 ${f[0]}</b> = ${f[1]}</p>
+        <p><b>🇪🇸 ${f[2]}</b> = ${f[3]}</p>
+      </div>
+    `).join("");
+}
+
+/* =========================================================
+   FRASES
+   ========================================================= */
+
+let phraseCategory="Todos";
+
+function renderPhraseFilters(){
+
+  const categories=["Todos",...new Set(phrases.map(p=>p[3]))];
+
+  document.getElementById("phraseFilters").innerHTML=
+    categories.map(c=>`
+      <button class="filter ${c==="Todos"?"active":""}"
+        onclick="setPhraseCategory('${escapeAttr(c)}')">
+        ${c}
+      </button>
+    `).join("");
+}
+
+function setPhraseCategory(c){
+
+  phraseCategory=c;
+
+  document.querySelectorAll("#phraseFilters .filter").forEach(btn=>{
+    btn.classList.toggle("active",btn.textContent.trim()===c);
+  });
+
+  renderPhrases();
+}
+
+function renderPhrases(){
+
+  const list=phrases.filter(p=>
+    phraseCategory==="Todos" || p[3]===phraseCategory
+  );
+
+  document.getElementById("phraseGrid").innerHTML=
+    list.map(p=>`
+      <div class="vocab-card">
+        <div class="vocab-category">${p[3]} · ${p[4]}</div>
+        <div class="vocab-word">${p[0]}</div>
+        <div class="pron">🔊 ${p[1]}</div>
+        <div class="vocab-meaning">🇪🇸 ${p[2]}</div>
+        <button class="speak"
+          onclick="speak(${JSON.stringify(p[0])})">
+          🔊 Escuchar
+        </button>
+      </div>
+    `).join("");
+}
+
+/* =========================================================
+   EJERCICIOS
+   ========================================================= */
+
+const quizQuestions=[
+
+  {
+    type:"Vocabulario",
+    q:"¿Qué significa “casa”?",
+    options:["Casa","Calle","Comida","Trabajo"],
+    answer:"Casa",
+    explanation:"“Casa” significa casa."
+  },
+
+  {
+    type:"Vocabulario",
+    q:"¿Cómo se dice “agua”?",
+    options:["água","arroz","leite","carne"],
+    answer:"água",
+    explanation:"“Água” significa agua."
+  },
+
+  {
+    type:"Vocabulario",
+    q:"¿Qué significa “trabalho”?",
+    options:["Escuela","Trabajo","Viaje","Casa"],
+    answer:"Trabajo",
+    explanation:"“Trabalho” significa trabajo."
+  },
+
+  {
+    type:"Vocabulario",
+    q:"¿Qué significa “obrigado”?",
+    options:["Gracias","Perdón","Adiós","Por favor"],
+    answer:"Gracias",
+    explanation:"“Obrigado” se utiliza para agradecer."
+  },
+
+  {
+    type:"Gramática",
+    q:"Completa: Eu ___ português.",
+    options:["estudo","estuda","estudam","estudar"],
+    answer:"estudo",
+    explanation:"Con “eu”, el presente de estudar es “estudo”."
+  },
+
+  {
+    type:"Gramática",
+    q:"Completa: Eu ___ cansado.",
+    options:["sou","estou","é","está"],
+    answer:"estou",
+    explanation:"Para expresar este estado se utiliza estar: “Eu estou cansado”."
+  },
+
+  {
+    type:"Gramática",
+    q:"¿Cuál es la contracción de “de + o”?",
+    options:["do","da","no","na"],
+    answer:"do",
+    explanation:"de + o = do."
+  },
+
+  {
+    type:"Gramática",
+    q:"¿Cuál es la contracción de “em + a”?",
+    options:["na","no","da","do"],
+    answer:"na",
+    explanation:"em + a = na."
+  },
+
+  {
+    type:"Verbos",
+    q:"¿Cuál es la forma de “ser” con EU?",
+    options:["sou","é","somos","são"],
+    answer:"sou",
+    explanation:"Eu sou."
+  },
+
+  {
+    type:"Verbos",
+    q:"¿Cuál es la forma de “ter” con EU?",
+    options:["tenho","tem","temos","têm"],
+    answer:"tenho",
+    explanation:"Eu tenho."
+  },
+
+  {
+    type:"Verbos",
+    q:"Completa: Nós ___ português.",
+    options:["falamos","falam","fala","falo"],
+    answer:"falamos",
+    explanation:"Nós falamos."
+  },
+
+  {
+    type:"Español → Portugués",
+    q:"¿Cómo se dice “mañana”?",
+    options:["amanhã","ontem","hoje","agora"],
+    answer:"amanhã",
+    explanation:"Amanhã significa mañana."
+  },
+
+  {
+    type:"Español → Portugués",
+    q:"¿Cómo se dice “rojo”?",
+    options:["vermelho","verde","branco","preto"],
+    answer:"vermelho",
+    explanation:"Vermelho significa rojo."
+  },
+
+  {
+    type:"Español → Portugués",
+    q:"¿Cómo se dice “familia”?",
+    options:["família","filho","mãe","casa"],
+    answer:"família",
+    explanation:"Família significa familia."
+  },
+
+  {
+    type:"Portugués → Español",
+    q:"¿Qué significa “saudade”?",
+    options:[
+      "Nostalgia / añoranza",
+      "Felicidad",
+      "Trabajo",
+      "Sueño"
+    ],
+    answer:"Nostalgia / añoranza",
+    explanation:"Saudade expresa un sentimiento de nostalgia, añoranza o echar de menos."
+  }
+
+];
+
+let quizIndex=0;
+let quizScore=0;
+let quizAnswered=false;
+
+function renderQuestion(){
+
+  const q=quizQuestions[quizIndex];
+
+  document.getElementById("exerciseType").textContent=q.type;
+  document.getElementById("exerciseCounter").textContent=
+    `Pregunta ${quizIndex+1} de ${quizQuestions.length}`;
+
+  document.getElementById("exerciseScore").textContent=
+    `${quizScore} puntos`;
+
+  document.getElementById("question").textContent=q.q;
+
+  document.getElementById("feedback").className="feedback";
+  document.getElementById("feedback").innerHTML="";
+
+  document.getElementById("nextQuestion").style.display="none";
+
+  document.getElementById("options").innerHTML=
+    q.options.map(option=>`
+      <button class="option"
+        onclick="answerQuestion(this,${JSON.stringify(option)})">
+        ${option}
+      </button>
+    `).join("");
+
+  quizAnswered=false;
+}
+
+function answerQuestion(button,answer){
+
+  if(quizAnswered)return;
+
+  quizAnswered=true;
+
+  const q=quizQuestions[quizIndex];
+  const correct=answer===q.answer;
+
+  document.querySelectorAll(".option").forEach(btn=>{
+    if(btn.textContent.trim()===q.answer){
+      btn.classList.add("correct");
+    }
+  });
+
+  if(correct){
+
+    button.classList.add("correct");
+    quizScore+=10;
+    state.correct++;
+
+  }else{
+
+    button.classList.add("wrong");
+    state.wrong++;
+  }
+
+  state.exercises++;
+  state.score=quizScore;
+
+  const feedback=document.getElementById("feedback");
+  feedback.className="feedback show";
+
+  feedback.innerHTML=correct
+    ? `<b>✓ Correcto</b><br>${q.explanation}`
+    : `<b>✕ Incorrecto</b><br>La respuesta correcta es <strong>${q.answer}</strong>.<br>${q.explanation}`;
+
+  document.getElementById("exerciseScore").textContent=
+    `${quizScore} puntos`;
+
+  document.getElementById("nextQuestion").style.display="inline-block";
+
+  saveState();
+  updateProgress();
+}
+
+document.getElementById("nextQuestion").addEventListener("click",()=>{
+
+  quizIndex++;
+
+  if(quizIndex>=quizQuestions.length){
+    quizIndex=0;
+  }
+
+  renderQuestion();
+});
+
+function restartQuiz(){
+
+  quizIndex=0;
+  quizScore=0;
+  renderQuestion();
+}
+
+/* =========================================================
+   REPASO
+   ========================================================= */
+
+let currentReviewWord="";
+
+function startReview(){
+
+  if(!state.studied.length){
+
+    document.getElementById("reviewWord").textContent=
+      "Primero marca algunas palabras como estudiadas.";
+
+    document.getElementById("reviewMeaning").textContent=
+      "Puedes hacerlo desde la biblioteca de vocabulario.";
+
+    return;
+  }
+
+  const word=
+    state.studied[Math.floor(Math.random()*state.studied.length)];
+
+  const data=vocabulary.find(v=>v[0]===word);
+
+  if(!data)return;
+
+  currentReviewWord=data[0];
+
+  document.getElementById("reviewWord").textContent=data[0];
+  document.getElementById("reviewMeaning").textContent=
+    `🇪🇸 ${data[2]} · ${data[1]}`;
+
+  document.getElementById("reviewSpeak").style.display="inline-block";
+}
+
+/* =========================================================
+   PROGRESO
+   ========================================================= */
+
+function updateProgress(){
+
+  const words=Math.min(state.studied.length,vocabulary.length);
+
+  const exerciseProgress=
+    Math.min(state.exercises/100,1);
+
+  const wordProgress=
+    Math.min(words/100,1);
+
+  const progress=Math.round(
+    ((wordProgress+exerciseProgress)/2)*100
+  );
+
+  document.getElementById("homeProgress").textContent=progress+"%";
+  document.getElementById("homeProgressBar").style.width=progress+"%";
+
+  document.getElementById("progressPercent").textContent=progress+"%";
+  document.getElementById("progressBar").style.width=progress+"%";
+
+  document.getElementById("statWords").textContent=words;
+  document.getElementById("statExercises").textContent=state.exercises;
+  document.getElementById("statCorrect").textContent=state.correct;
+  document.getElementById("statScore").textContent=state.score;
+
+  document.getElementById("reviewWords").textContent=words;
+  document.getElementById("reviewCorrect").textContent=state.correct;
+  document.getElementById("reviewWrong").textContent=state.wrong;
+  document.getElementById("reviewExercises").textContent=state.exercises;
+
+  let level="Principiante";
+
+  if(progress>=70) level="Avanzado";
+  else if(progress>=40) level="Intermedio";
+
+  document.getElementById("levelText").textContent=level;
+
+  document.getElementById("badgeLesson")
+    .classList.toggle("unlocked",state.sections.length>1);
+
+  document.getElementById("badgeWords")
+    .classList.toggle("unlocked",words>=50);
+
+  document.getElementById("badgePractice")
+    .classList.toggle("unlocked",state.exercises>=1);
+
+  document.getElementById("badgeVerbs")
+    .classList.toggle("unlocked",state.verbsSeen>=1);
+
+  document.getElementById("badge100")
+    .classList.toggle("unlocked",state.exercises>=100);
+
+  document.getElementById("badgeDialogue")
+    .classList.toggle("unlocked",state.dialogue);
+}
+
+/* =========================================================
+   BUSCADOR GLOBAL
+   ========================================================= */
+
+const globalSearch=document.createElement("div");
+
+globalSearch.innerHTML=`
+  <div id="globalSearchPanel"
+       style="
+       display:none;
+       position:fixed;
+       top:68px;
+       left:0;
+       right:0;
+       background:#fff;
+       border-bottom:1px solid #ddd;
+       box-shadow:0 10px 30px rgba(0,0,0,.08);
+       z-index:999;
+       padding:20px;">
+    <div style="max-width:900px;margin:auto">
+      <input id="globalSearchInput"
+        style="width:100%;padding:15px;border:1px solid #ddd;border-radius:10px;outline:none"
+        placeholder="Buscar en Randiño...">
+      <div id="globalResults"></div>
+    </div>
+  </div>
+`;
+
+document.body.appendChild(globalSearch);
+
+const searchTrigger=document.createElement("button");
+
+searchTrigger.className="nav-btn";
+searchTrigger.textContent="⌕ Buscar";
+
+document.querySelector(".desktop-nav").prepend(searchTrigger);
+
+searchTrigger.addEventListener("click",()=>{
+  const panel=document.getElementById("globalSearchPanel");
+  panel.style.display=panel.style.display==="none"?"block":"none";
+
+  if(panel.style.display==="block"){
+    document.getElementById("globalSearchInput").focus();
+  }
+});
+
+document.getElementById("globalSearchInput").addEventListener("input",function(){
+
+  const q=this.value.toLowerCase().trim();
+  const results=document.getElementById("globalResults");
+
+  if(!q){
+    results.innerHTML="";
+    return;
+  }
+
+  const found=[];
+
+  vocabulary.forEach(v=>{
+    if(
+      v[0].toLowerCase().includes(q) ||
+      v[2].toLowerCase().includes(q)
+    ){
+      found.push({
+        title:v[0],
+        info:`${v[2]} · ${v[3]}`,
+        section:"vocabulario"
+      });
+    }
+  });
+
+  verbs.forEach(v=>{
+    if(
+      v[0].toLowerCase().includes(q) ||
+      v[2].toLowerCase().includes(q)
+    ){
+      found.push({
+        title:v[0],
+        info:`Verbo · ${v[2]}`,
+        section:"verbos"
+      });
+    }
+  });
+
+  phrases.forEach(p=>{
+    if(
+      p[0].toLowerCase().includes(q) ||
+      p[2].toLowerCase().includes(q)
+    ){
+      found.push({
+        title:p[0],
+        info:`${p[2]} · ${p[3]}`,
+        section:"frases"
+      });
+    }
+  });
+
+  results.innerHTML=found.slice(0,15).map(r=>`
+    <div class="search-result"
+      onclick="closeGlobalSearch('${r.section}')">
+      <strong>${r.title}</strong><br>
+      <small style="color:#777">${r.info}</small>
+    </div>
+  `).join("");
+
+  if(!found.length){
+    results.innerHTML=
+      `<p style="color:#777;padding:15px 0">No encontramos resultados.</p>`;
+  }
+});
+
+function closeGlobalSearch(section){
+
+  document.getElementById("globalSearchPanel").style.display="none";
+  document.getElementById("globalSearchInput").value="";
+  document.getElementById("globalResults").innerHTML="";
+
+  showSection(section);
+}
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
+function resetProgress(){
+
+  if(!confirm("¿Seguro que quieres borrar todo tu progreso?"))return;
+
+  state={
+    studied:[],
+    correct:0,
+    wrong:0,
+    exercises:0,
+    score:0,
+    sections:[],
+    verbsSeen:0,
+    dialogue:false
+  };
+
+  saveState();
+  updateProgress();
+
+  alert("Tu progreso ha sido restablecido.");
+}
+
+/* =========================================================
+   SEGURIDAD PARA TEXTO INSERTADO EN HTML
+   ========================================================= */
+
+function escapeAttr(text){
+
+  return text
+    .replace(/&/g,"&amp;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#39;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;");
+}
+
+/* =========================================================
+   INICIALIZACIÓN
+   ========================================================= */
+
+document.getElementById("vocabSearch")
+  .addEventListener("input",renderVocabulary);
+
+document.getElementById("verbSearch")
+  .addEventListener("input",renderVerbs);
+
+renderFilters();
+renderVocabulary();
+renderVerbs();
+renderNumbers();
+renderColors();
+renderFalseFriends();
+renderPhraseFilters();
+renderPhrases();
+renderQuestion();
+updateProgress();
+
+/*
+  Algunos navegadores cargan las voces de SpeechSynthesis
+  de forma asíncrona. Al cambiar de voz o cargar la página,
+  el sistema vuelve a consultar las voces disponibles.
+*/
+
+if("speechSynthesis" in window){
+  speechSynthesis.onvoiceschanged=()=>{};
+}
+
+</script>
+
+</body>
+</html>
